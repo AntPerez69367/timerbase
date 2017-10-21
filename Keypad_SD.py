@@ -22,9 +22,6 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
 		self.button_9.clicked.connect(self.buttonClicked)
 		self.delete_button.clicked.connect(self.clear)
     
-    ## test stuff here written by jose blah blah blah code
-    ## GITHUB
-	## anthony was here
 		
 	def buttonClicked(self):
 		clickedButton = self.sender()
@@ -80,12 +77,38 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
 	
 	def startTimer(self):
 		pass
-		## To do
+		
 		
 		## send the stop command
 	def stopTimer(self):
 		pass
 		## To do
+
+        ## Progress Bar
+self.progress = QtGui.QProgressBar(self)
+    self.progress.setGeometry(200, 80, 250, 20)
+    
+    self.btn = QtGui.QPushButton("Time",self)
+        self.btn.move(200,120)
+        self.btn.clicked.connect(self.download)
+        
+        self.show()
+    
+    
+    def download(self):
+        self.completed = 0
+        
+        while self.completed < 100:
+            self.completed += 0.0001
+            self.progress.setValue(self.completed)
+
+
+
+def enlarge_window(self, state):
+    if state == QtCore.Qt.Checked:
+        self.setGeometry(50,50, 1000, 600)
+        else:
+        self.setGeometry(50, 50, 500, 300)
 		
 if __name__ == "__main__":
    app = QtWidgets.QApplication(sys.argv)
