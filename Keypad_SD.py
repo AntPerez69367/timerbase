@@ -21,6 +21,8 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
 		self.button_8.clicked.connect(self.buttonClicked)
 		self.button_9.clicked.connect(self.buttonClicked)
 		self.delete_button.clicked.connect(self.clear)
+    
+    ## test stuff here written by jose blah blah blah code
 		
 	def buttonClicked(self):
 		clickedButton = self.sender()
