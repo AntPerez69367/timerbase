@@ -23,7 +23,7 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
 		self.delete_button.clicked.connect(self.clear)
     
     ## test stuff here written by jose blah blah blah code
-	
+    ## GITHUB
 	## anthony was here
 		
 	def buttonClicked(self):
