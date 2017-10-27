@@ -261,6 +261,16 @@
      <string>OK</string>
     </property>
    </widget>
+   <widget class="QLabel" name="label1">
+    <property name="geometry">
+      <rect>
+        <x>250</x>
+        <y>50</y>
+        <width>231</width>
+        <height>51</height>
+      </rect>
+    </property>
+   </widget>
    <widget class="QTextEdit" name="value_box">
     <property name="geometry">
      <rect>
