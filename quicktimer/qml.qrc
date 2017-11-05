@@ -1,0 +1,15 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>qtquickcontrols2.conf</file>
+        <file>customlabel.qml</file>
+        <file>PageBackground.qml</file>
+        <file>SideBar.qml</file>
+        <file>Timer1.qml</file>
+        <file>Settings.qml</file>
+        <file>MyButton.qml</file>
+        <file>About.qml</file>
+        <file>main.cpp</file>
+        <file>images/bt-logo.PNG</file>
+    </qresource>
+</RCC>
