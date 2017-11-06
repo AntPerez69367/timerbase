@@ -2,29 +2,24 @@ import QtQuick 2.4
 import QtQuick.Controls 2.0
 import QtQuick.Extras 1.4
 import QtQuick.Layouts 1.0
-import Qt.labs.settings 1.0
+import QtQuick.LocalStorage 2.0
+import "storage.js" as Settings
 
 
 PageBackground {
-    id: pageBackground
+    id: settingsform
     width: 640
-    color: "#191919"
     border.width: 0
     title: "Settings"
 
-    function storeSettings() { // executed maybe on destruction
-        settings.text = surveyName.text
+    function storeSettings() { // executed maybe on destruction 
+        Settings.set("survey_name", surveyName.text)
+        Settings.set("slide_length", parseInt(Math.round(sliderSetLength.value)))
+        Settings.set("survey_enabled", toggleSurvey.checked)
+        storeButton.text = "Saved!"
     }
 
-    Settings{
-        id: settings
-
-        property alias text: surveyName.text
-        property alias value: sliderSetLength.value
-        property alias checked: toggleSurvey.checked
-    }
-
-    RowLayout {
+   RowLayout {
         y: 83
         width: 514
         height: 40
@@ -37,6 +32,7 @@ PageBackground {
         Switch {
             id: toggleSurvey
             text: "Enable Survey"
+            checked: Settings.get("survey_enabled", false)
             z: 2
             Layout.preferredHeight: 40
             Layout.preferredWidth: 200
@@ -44,6 +40,7 @@ PageBackground {
             font.weight: Font.Bold
             enabled: true
             font.pointSize: 12
+
 
             contentItem: Text {
                 wrapMode: Text.NoWrap
@@ -59,14 +56,15 @@ PageBackground {
         TextField {
             id: surveyName
             x: 226
-            text: "SurveyName"
+            text: Settings.get("survey_name", "SurveyName")
             font.capitalization: Font.AllLowercase
-
             opacity: toggleSurvey.checked ? 1.0 : 0.0
-
             font.pointSize: 12
             horizontalAlignment: Text.AlignHCenter
-         }
+            onTextChanged: {
+                storeButton.text = "Save"
+            }
+        }
     }
 
 
@@ -78,7 +76,7 @@ PageBackground {
         height: 48
         stepSize: 1
         to: 300
-        value: 100
+        value: (Settings.get("slide_length", 100))
 
 
     }
@@ -111,6 +109,9 @@ PageBackground {
         padding: 0
         font.letterSpacing: 0
         font.wordSpacing: 5
+        onTextChanged: {
+            storeButton.text = "Save"
+        }
     }
 
     Label {
@@ -121,6 +122,18 @@ PageBackground {
         font.bold: true
         font.pointSize: 12
         color: "white"
+    }
+
+    MyButton {
+        id: storeButton
+        x: 486
+        y: 384
+        text: "Save"
+        onClicked: {
+            storeSettings()
+
+        }
+
     }
 
 }

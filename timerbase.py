@@ -10,11 +10,13 @@ class TimerBase(QObject):
 
     updateStatus = pyqtSignal(str, arguments=['status'])
 
-    @pyqtSlot(str)
-    def startClicked(self, arg1):
+    @pyqtSlot(str, str, str)
+    def startClicked(self, arg1, arg2, arg3):
         print("Clicked Start: " + arg1)
         time = arg1.split(":")
         time = list(map(int, time))
+        print(arg2 + " " + arg3)
+
         # print(time)
         self.updateStatus.emit("Connected")
 
@@ -56,6 +58,7 @@ class TimerBase(QObject):
 
         except bluetooth.btcommon.BluetoothError as err:
             # Error handler TO DO
+            print(err)
             pass
 
         # send timer data

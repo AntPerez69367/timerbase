@@ -30,9 +30,8 @@ ApplicationWindow {
 
         }
 
-        Settings{
-
-        }
+        SettingsForm{
+              }
 
         About{
 

@@ -2,13 +2,15 @@ import QtQuick 2.4
 import QtQuick.Controls.Material 2.0
 import QtQuick.Controls 2.0
 import QtQuick.Extras 1.4
+import QtQuick.LocalStorage 2.0
+import "storage.js" as Settings
 
 PageBackground {
-    id: pageBackground
+    id: timerform
     x: 0
     width: 640
-    property alias time: time
-
+    property alias buttonStart: buttonStart
+    property string time: time.text
     title: time.acceptableInput ? "Timer" : "Invalid Time Input. Try Again"
 
     function clear(){
@@ -84,7 +86,10 @@ PageBackground {
         anchors.leftMargin: 37
         anchors.bottom: buttonStop.top
         onClicked: {
-            timerbase.startClicked(qsTr(time.text))
+
+        timerbase.startClicked(qsTr(time.text),
+                               qsTr(Settings.get("survey_name", "SurveyName")),
+                               qsTr(Settings.get("slide_length", 100)))
         }
 
     }
